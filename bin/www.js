@@ -2,6 +2,7 @@
 import app from '../app.js';         //configuracion del servidor
 import debug from 'debug';           //modulo de debugeo
 import http from 'http';             //modulo para crear servidores
+import { connect } from 'mongoose';  //metodo para conectarme a la db
 
 // PORT
 //process.env guarda las configuraciones de las variables de entorno
@@ -12,7 +13,13 @@ app.set('port', port);
 
 // START SERVING
 let server = http.createServer(app);  //creo un servidor normalizador con HTTP
-let ready = ()=> console.log('server ready on port '+port);
+let ready = ()=> {
+  console.log('server ready on port '+port);
+  //connect('link de conexion de mongo')
+  connect(process.env.LINK_DB)
+    .then(()=>console.log('database connected'))
+    .catch(err=>console.log(err))
+}
 server.listen(port, ready);                  //con el metodo listen ESCUCHO el puerto para que empiece a funcionar
 server.on('error', onError);
 server.on('listening', onListening);
