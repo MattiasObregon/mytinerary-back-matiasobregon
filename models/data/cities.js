@@ -128,6 +128,7 @@ const cities = [{
 async function createCities(arrayCities) {
     try {
         await connect(process.env.LINK_DB)
+        
         for (let city of arrayCities) {
             let user = await User.findOne({ mail:city.admin_id })   //busco el usuario que conincida el mail del objeto
             let admin_id = await user._id                           //SOLO necesito el id de ese usuario
