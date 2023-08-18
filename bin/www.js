@@ -8,7 +8,7 @@ import { connect } from 'mongoose';  //metodo para conectarme a la db
 //process.env guarda las configuraciones de las variables de entorno
 //variables muy delicadas que son necesarias proteger
 //se configuran con un modulo que se llama DOTENV
-let port = normalizePort(process.env.PORT || '3000');
+let port = normalizePort(process.env.PORT || '4000');
 app.set('port', port);
 
 // START SERVING

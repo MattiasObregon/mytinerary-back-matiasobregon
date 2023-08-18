@@ -5,9 +5,12 @@ import createError from 'http-errors';               //crear errores
 import express from 'express';                       //provee metodos y propiedades para levantar servidores
 import path from 'path';                             //para conocer la ubicacion de nuestro servidor
 import logger from 'morgan';                         //para registrar cada una de las peticiones
+import notFoundHandler from './middlewares/errorHandler.js'
+import errorHandler from './middlewares/notFoundHandler.js'
 
 //var indexRouter = require('./routes/index');       //solo vamos a configurar las rutas del enrutador de back principal
 import indexRouter from './routes/index.js'          //este enrutador va a llamar a TODOS los otros recursos
+import notFoundHandler from './middlewares/notFoundHandler.js';
 
 let app = express();                                 //ejecutando el modulo de express: CREO UNA APP DE BACKEND
 
@@ -28,19 +31,9 @@ app.use(express.static(path.join(__dirname, 'public'))); //obligo al servidor a 
 app.use('/api', indexRouter);                          //obligo al servidor a que use las rutas del enrutador principal "/api"
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  next(createError(404));
-});
+app.use(notFoundHandler);
 
 // error handler
-app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
-
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
-});
+app.use(errorHandler);
 
 export default app
