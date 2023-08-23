@@ -1,16 +1,13 @@
 //IMPORTS
 import 'dotenv/config.js';                           //importo unicamente la configuracion de las variables de entorno  
 import __dirname from './utils.js';                  //importo la configuracion de la ubicacion dle servidor (antes, con commonjs, venia con pre-configurada)
-import createError from 'http-errors';               //crear errores
 import express from 'express';                       //provee metodos y propiedades para levantar servidores
 import path from 'path';                             //para conocer la ubicacion de nuestro servidor
 import logger from 'morgan';                         //para registrar cada una de las peticiones
-import notFoundHandler from './middlewares/errorHandler.js'
 import errorHandler from './middlewares/notFoundHandler.js'
-
-//var indexRouter = require('./routes/index');       //solo vamos a configurar las rutas del enrutador de back principal
 import indexRouter from './routes/index.js'          //este enrutador va a llamar a TODOS los otros recursos
 import notFoundHandler from './middlewares/notFoundHandler.js';
+import cors from 'cors'
 
 let app = express();                                 //ejecutando el modulo de express: CREO UNA APP DE BACKEND
 
@@ -26,6 +23,7 @@ app.use(logger('dev'));                             //obligo al servidor a regis
 app.use(express.json());                            //obligo al servidor a manipular/leer json
 app.use(express.urlencoded({ extended: false }));   //obligo al servidor a leer params/queries
 app.use(express.static(path.join(__dirname, 'public'))); //obligo al servidor a acceder los archivos estaticos de la carpeta public
+app.use(cors());
 
 //ROUTER
 app.use('/api', indexRouter);                          //obligo al servidor a que use las rutas del enrutador principal "/api"
