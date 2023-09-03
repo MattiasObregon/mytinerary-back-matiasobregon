@@ -1,4 +1,4 @@
-import City from "../../models/City.js";
+import Itinerary from "../../models/Itinerary.js"
 
 export default async (req, res, next) => {
   try {
