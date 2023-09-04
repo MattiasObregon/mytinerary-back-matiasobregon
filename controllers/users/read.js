@@ -4,6 +4,7 @@ export default async (req, res, next) => {
     try {
         let allUsers = await User
             .find()
+            .sort({name:1})
         if (allUsers) {
             return res.status(200).json({
                 sucess: true,
