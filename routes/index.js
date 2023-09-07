@@ -1,8 +1,9 @@
-import express from 'express';
+import express from 'express'
 //importador principal va a llamar a TODOS los recursos y los va a enrutar
 import userRouter from './users.js'
-import cityRouter from './cities.js';
-import itinerariesRouter from './itineraries.js';
+import cityRouter from './cities.js'
+import itinerariesRouter from './itineraries.js'
+import authRouter from './auth.js'
 
 let router = express.Router();
 
@@ -14,6 +15,7 @@ router.get('/', function(req, res, next) {
 router.use('/users',userRouter)
 router.use('/cities', cityRouter);
 router.use('/itineraries', itinerariesRouter);
+router.use('/auth', authRouter);
 
 //router.user acepta COMO MINIMO DOS PARAMETROS para poder enrutar correctamente
   //1- la palabrita con la que se va a enrutar
