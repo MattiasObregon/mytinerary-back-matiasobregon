@@ -1,4 +1,5 @@
-import express from 'express';
+import express from 'express'
+
 import create from '../controllers/users/create.js'
 import read from '../controllers/users/read.js'
 import readOne from '../controllers/users/readOne.js'
