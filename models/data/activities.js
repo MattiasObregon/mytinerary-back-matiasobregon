@@ -1,7 +1,7 @@
-import 'dotenv/config.js';
-import { connect } from 'mongoose';
-import Activity from '../Activity.js';
-import Itinerary from '../Itinerary.js';
+import 'dotenv/config.js'
+import { connect } from 'mongoose'
+import Activity from '../Activity.js'
+import Itinerary from '../Itinerary.js'
 
 const activities = [{
     name: "Hikking Tour",
