@@ -1,5 +1,8 @@
 import express from 'express'
 
+import passport from '../middlewares/passport.js'
+import updatePassHash from '../middlewares/updatePassHash.js'
+
 import create from '../controllers/users/create.js'
 import read from '../controllers/users/read.js'
 import readOne from '../controllers/users/readOne.js'
@@ -25,7 +28,7 @@ router.get('/:user_id', readOne)
 // Ejemolo: aca y en el controller id
 
 // Update
-router.put('/:u_id', update)
+router.put('/', passport.authenticate("jwt",{ session:false }), updatePassHash, update)
 
 // Destroy
 router.delete('/:id', destroy)

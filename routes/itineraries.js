@@ -21,4 +21,4 @@ itinerariesRouter.put('/:id', update);
 // Destroy
 itinerariesRouter.delete('/:id', destroy)
 
-export default itinerariesRouter;
+export default itinerariesRouter

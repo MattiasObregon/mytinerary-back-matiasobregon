@@ -22,4 +22,4 @@ router.put('/:city_id', update);
 // Destroy
 router.delete('/:city_id', destroy);
 
-export default router;
+export default router

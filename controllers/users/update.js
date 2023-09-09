@@ -1,27 +1,22 @@
-import User from '../../models/User.js'
+import User from "../../models/User.js";
 
-export default async (req, res, next) => {
+export default async (req, res) => {
     try {
-        let updateUser = await User.findByIdAndUpdate(
-            req.params.u_id,
+        let updatedUser = await User.findOneAndUpdate(
+            { mail: req.user.mail },
             req.body,
-            { new: true }
-        ).select('name photo mail')
-
-        if (updateUser) {
-            return res.status(200).json({
-                success: true,
-                message: 'User updated',
-                response: updateUser
-            });
-        } else {
-            return res.status(404).json({
-                success: false,
-                message: 'User not found',
-                response: null
-            });
-        }
+            { new: true } //por default en FALSE y devuelve el objeto ANTES de la modificación
+        ).select("-_id -__v -password");
+        return res.status(200).json({
+            success: true,
+            message: "user updated",
+            response: updatedUser,
+        });
     } catch (error) {
-        next(error);
+        return res.status(400).json({
+            success: false,
+            message: "not updated",
+            response: null,
+        })
     }
-};
+}
