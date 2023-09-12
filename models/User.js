@@ -1,4 +1,4 @@
-import { model,Schema } from "mongoose";
+import { model, Schema } from "mongoose";
 
 //lo primero que necesitamos crear es el espacio virtual donde se van a guardar todos los documentos/modelos
 //es decir LA COLECCION (conjunto de documentos/modelos de datos)

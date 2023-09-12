@@ -24,7 +24,7 @@ let authRouter = Router();
 //validar que la cuenta NO existe para que no haya RE-REGISTRO
 //hashear la contraseña
 authRouter.post(
-  "/register",
+  "/signup",
   validator(registerSchema),
   existsUser,
   isValidPass,

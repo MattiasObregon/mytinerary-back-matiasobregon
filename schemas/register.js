@@ -21,7 +21,10 @@ const registerSchema = joi.object({
   lastName: joi.string().min(3).max(20).empty("").messages({
     'string.min': "Last name must have at least 3 characters please!",
     'string.max': "Last name must be less than 21 characters please!",
-  })
+  }),
+  photo: joi.string().uri().empty("").messages({
+    "string.uri": "INVALID_URL",
+  }),
 });
 
 export default registerSchema;
